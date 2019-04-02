@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" charset="UTF-8">
+    <title>QUIZ</title>
+    <link rel="stylesheet" href="Page/CSS/stylesheet.css">
+</head>
+<body>
+    <section class="boxWrapper">
+        <section class="box progressBox">
+            <section class="top">
+                <label for="currentQuiz">Current quiz progress:</label>
+                <progress id="currentQuiz" max="10" value="0"></progress><br>
+                <span>Result:</span>  <span id="result">0/0 </span><br>
+                <span>Answer: </span> <span id="answer"></span><br>
+            </section>
+        </section>
+        <section class="box questionBox">
+            <h1 id="question">Click to load questions. Click to make a choice. Then click for next questions.</h1>
+        </section>
+        <div id="alt0box" class="altbox">
+            <p class="alternative" id="alt0text"></p>
+        </div>
+        <div id="alt1box" class="altbox">
+            <p class="alternative" id="alt1text"></p>
+        </div>
+        <div id="alt2box" class="altbox">
+            <p class="alternative" id="alt2text"></p>
+        </div>
+        <div id="alt3box" class="altbox">
+            <p class="alternative" id="alt3text"></p>
+        </div>
+        <section class="box settingsBox">
+            <span id="infoText">Click to make a choice then click for next question.</span>
+            <br>
+            <br>
+            <section id="settings">
+                <section id="category-section">
+                    <label for="category">Quiz category: </label>
+                    <select id="category">
+                        <option value="">Random questions</option>
+                        <option value="9">General knowledge</option>
+                        <option value="15">Video games</option>
+                        <option value="11">Movies</option>
+                        <option value="10">Books</option>
+                    </select>
+                </section>
+                <br>
+                <section id="difficulty-section">
+                    <label for="difficulty">Quiz difficulty: </label>
+                    <select id="difficulty">
+                        <option value="">Random difficulty</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </section>
+                <p>Settings will take effect after the current quiz is finished.</p>
+                <p style="text-align: end">Patriks Quiz </p>
+            </section>
+        </section>
+    </section>
+
+    <script src="Page/Script/script.js"></script>
+</body>
+</html>
