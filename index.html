@@ -1,66 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" charset="UTF-8">
-    <title>QUIZ</title>
-    <link rel="stylesheet" href="Page/CSS/stylesheet.css">
-</head>
-<body>
-    <section class="boxWrapper">
-        <section class="box progressBox">
-            <section class="top">
-                <label for="currentQuiz">Current quiz progress:</label>
-                <progress id="currentQuiz" max="10" value="0"></progress><br>
-                <span>Result:</span>  <span id="result">0/0 </span><br>
-                <span>Answer: </span> <span id="answer"></span><br>
-            </section>
-        </section>
-        <section class="box questionBox">
-            <h1 id="question">Click to load questions. Click to make a choice. Then click for next questions.</h1>
-        </section>
-        <div id="alt0box" class="altbox">
-            <p class="alternative" id="alt0text"></p>
+<html lang="sv">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="sheet-container">
+        <div class="row wrapper">
+          <div class="col-6 sheet-column">
+            <score-sheet
+              :uprow="upRows" 
+              :lowrow="lowRows">
+            </score-sheet>
+          </div>
+          
+          <div class="how-to col-6">
+            <h3>{{howTo.header}}</h3>
+            <p>
+              {{howTo.text}}
+            </p>
+            <a href='https://sv.wikipedia.org/wiki/Yatzy#Spelregler' target="_blank">Länk till regler</a>
+            <br><br>{{info}}
+          </div>
         </div>
-        <div id="alt1box" class="altbox">
-            <p class="alternative" id="alt1text"></p>
-        </div>
-        <div id="alt2box" class="altbox">
-            <p class="alternative" id="alt2text"></p>
-        </div>
-        <div id="alt3box" class="altbox">
-            <p class="alternative" id="alt3text"></p>
-        </div>
-        <section class="box settingsBox">
-            <span id="infoText">Click to make a choice then click for next question.</span>
-            <br>
-            <br>
-            <section id="settings">
-                <section id="category-section">
-                    <label for="category">Quiz category: </label>
-                    <select id="category">
-                        <option value="">Random questions</option>
-                        <option value="9">General knowledge</option>
-                        <option value="15">Video games</option>
-                        <option value="11">Movies</option>
-                        <option value="10">Books</option>
-                    </select>
-                </section>
-                <br>
-                <section id="difficulty-section">
-                    <label for="difficulty">Quiz difficulty: </label>
-                    <select id="difficulty">
-                        <option value="">Random difficulty</option>
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select>
-                </section>
-                <p>Settings will take effect after the current quiz is finished.</p>
-                <p style="text-align: end">Patriks Quiz </p>
-            </section>
-        </section>
-    </section>
+      </div>    
 
-    <script src="Page/Script/script.js"></script>
+      <roll-and-dice
+        :rolls="rolls"
+        :dice="dice"
+        :show="showDice">
+      </roll-and-dice>
+
+      <modal v-show="showScoreModal" @close="$store.commit('toggleScoreModal'); $store.commit('resetGame');">
+          <h3 slot="header">Yatzy!</h3>
+          <p slot="body">Du fick {{totalPoints}} poäng!</p>
+      </modal>
+
+      <div class="container center">
+        <button class="button how-to-button" @click="$store.commit('toggleRulesModal')">Hur du spelar</button>
+      </div>
+
+      <modal v-show="showRulesModal" @close="$store.commit('toggleRulesModal')" id="rules-modal">
+        <h3 slot="header">{{howTo.header}}</h3>
+        <p slot="body">
+          {{howTo.text}}
+          <br><br>
+          <a href='https://sv.wikipedia.org/wiki/Yatzy#Spelregler'>Länk till regler</a>
+        </p>
+      </modal>
+
+    </div>
+<script src="script.js"></script>
 </body>
 </html>
